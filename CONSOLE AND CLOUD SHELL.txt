@@ -1,0 +1,99 @@
+CONSOLE AND CLOUD SHELL
+
+make sure you are signed in to the google cloud platform console
+USING THE CLOUD SHELL AVAILABLE ON THE GOOGLE CLOUD CONSOLE
+
+why running commands,all command should be in small letters and 
+
+//To create a bucket, using the command line instructions
+ to create the bucket,we run the command
+
+ 
+gsutil mb gs://abdullahiusman46
+
+
+ gsutil is the command for working on cloud storage and the <BUCKET NAME> should be replaced with a desired name which must be globally unique.
+
+ uploading a file to bucket 1
+
+ we can click on the three dot icon in the shell toolbar which displays a drop down,which also contains a heading for UPLOAD FILE.
+ a new interface is being prompted for us to upload any desired file from our onpremise machine into the bucket.the name of the uploaded file should be made simple
+
+
+ in the cloud shell,to confirm the file has been uploaded,we run 
+
+ls
+
+ this command list the available file in the bucket.
+
+
+ to copy a file into another bucket,if we have two buckets created,then we can run the command
+
+gsutil cp ['img.txt'] gs://abdullahiusman46
+
+# cp stands for copy
+
+ to select a region or zone,first we need to identify all available regions. To do so,we run the command
+
+gcloud compute regions list
+
+# create an environment variable with your region
+
+INFRACLASS_REGION=[US-central1]
+
+# verify region with echo
+
+echo $INFRACLASS_REGION
+
+# to create a sub directory 
+
+mkdir infraclass
+
+# create a file in the infraclass called class
+
+touch infraclass/config
+
+# append the calue of environment variable to the config class
+
+echo INFRACLASS_REGION=$INFRACLASS_REGION >> ~/infraclass/config
+
+# create a second environment variable for project id 
+
+INFRACLASS_PROJECT_ID=gs://abdullahiusman46
+
+# append value of project id
+
+echo INFRACLASS_PROJECT_ID=$INFRACLASS_PROJECT_ID >> ~/infraclass/config
+
+# set the environment variable 
+
+source infraclass/config
+
+# verify project variable was set
+
+echo $INFRACLASS_PROJECT_ID
+
+# close and reopen the cloud shell
+
+ issue the echo command again,there should be no output because environment variable no longer exists
+
+echo $INFRACLASS_PROJECT_ID
+
+# edit shell profile using the nano command
+
+nano .profile
+
+# add the following line
+
+source infraclass/config
+
+# Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
+
+ close and re open the cloud shell to cycle the VM
+
+ use echo command to verify the variable is still set
+
+echo $INFRACLASS_PROJECT_ID
+
+# the expected value should now be seen.
+

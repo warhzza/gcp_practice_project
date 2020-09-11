@@ -1,0 +1,54 @@
+# open the cloud console.
+# click on the navigation menu an ensure the kubernetes engine Api and Container Registry Api are enabled.
+
+# start the cloud shell 
+# and set the project account using the 
+
+gcloud config set project abdullahiusman460
+
+# set the zone using the
+
+export MY_ZONE=us-central1-a
+
+# start a kubernetes cluster running 2 nodes
+
+gcloud container clusters create webfrontend --zone $MY_ZONE --num-nodes 2
+
+# check the installed kubernetes cluster using the
+
+kubectl version
+
+# view the running nodes using the GCP console
+
+ to run a single instance (a Nginx web server)
+
+kubectl create deploy nginx --image=nginx:1.17.10
+
+# to view the pods running the nginx container
+
+kubectl get pods
+
+# to expose the nginx container to the internet
+
+kubectl expose deployment nginx --port 80 --type LoadBalancer
+
+# to view the new services
+
+kubectl get services
+
+# rerun the get services command till the External-IP is populated
+
+ open a new web browser tab and paste the generated ip address to generate the home page of the nginx web browser.
+ to scale the number of pods running use the
+
+kubectl scale deployment nginx --replicas 3
+
+# confirm that kubernetes pods has been updated
+
+kubectl get pods
+
+# confirm the external IP address has not changed using 
+
+kubectl get services
+
+# return to the web browser tab where the external ip address opened and refresh to confirm the web server s still responding.
